@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
-import 'package:yawwn/pages/homepage.dart';
+import 'package:provider/provider.dart';
+import 'package:yawwn/global_state/authentication_state.dart';
 import 'package:yawwn/pages/progress.dart';
+import 'package:yawwn/utils/show_two_buttons_dialog.dart';
 import 'package:yawwn/widgets/background_decorations/mask_and_clouds.dart';
 import 'package:yawwn/widgets/bottom_navigation_buttons.dart';
 import 'package:yawwn/widgets/instructions/instruction_text.dart';
@@ -49,13 +51,19 @@ class Instructions extends StatelessWidget {
             )
           ],
         ),
-        BottomNavigationButton(
-            backwardOnPressed: () =>
-                Navigator.pushNamed(context, MyHomePage.route),
-            goBackwardText: "Maybe Later",
-            goForwardText: "Let's go!",
-            forwardOnPressed: () =>
-                Navigator.pushNamed(context, Progress.route))
+        Consumer<AuthenticationState>(
+            builder: (context, authState, _) => BottomNavigationButton(
+                backwardOnPressed: () {
+                  showTwoButtonsDialog(
+                    context,
+                    () => Navigator.of(context).pop(),
+                    () => authState.signOut(context),
+                  );
+                },
+                goBackwardText: "Maybe Later",
+                goForwardText: "Let's go!",
+                forwardOnPressed: () =>
+                    Navigator.pushNamed(context, Progress.route)))
       ]),
     );
   }

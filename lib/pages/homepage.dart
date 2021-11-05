@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:yawwn/pages/instructions.dart';
 import 'package:yawwn/widgets/background_decorations/moon_and_stars_background.dart';
@@ -6,9 +7,10 @@ import 'package:yawwn/widgets/stack_container.dart';
 import 'package:yawwn/widgets/welcome_text.dart';
 
 class MyHomePage extends StatefulWidget {
-  static const route = "homepage";
+  static const route = "/";
+  final User currentUser;
 
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({required this.currentUser, Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -21,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: StackContainer(children: [
         const MoonAndStarsBackground(),
         Stack(children: [
-          const WelcomeText(),
+          WelcomeText(username: widget.currentUser.displayName!),
           BottomNavigationButton(
             goForwardText: "Let's Begin",
             forwardOnPressed: () =>

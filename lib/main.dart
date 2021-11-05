@@ -4,6 +4,7 @@ import 'package:yawwn/pages/authentication/authentication.dart';
 import 'package:yawwn/pages/homepage.dart';
 import 'package:yawwn/pages/instructions.dart';
 import 'package:yawwn/pages/progress.dart';
+import 'package:yawwn/widgets/authentication/login_state_enum.dart';
 
 import 'global_state/authentication_state.dart';
 
@@ -44,15 +45,22 @@ class MyApp extends StatelessWidget {
             backgroundColor: const Color(0xFF291467)),
         initialRoute: Authentication.route,
         routes: {
-          MyHomePage.route: (context) => const MyHomePage(),
           Instructions.route: (context) => const Instructions(),
           Progress.route: (context) => const Progress(),
           Authentication.route: (context) => Consumer<AuthenticationState>(
-              builder: (context, authState, _) => Authentication(
-                    loginState: authState.loginState,
-                    startLogin: authState.startLogin,
-                    startRegister: authState.startRegister,
-                  ))
+              builder: (context, authState, _) =>
+                  authState.loginState != ApplicationLoginState.loggedIn
+                      ? Authentication(
+                          loginState: authState.loginState,
+                          startLogin: authState.startLogin,
+                          startRegister: authState.startRegister,
+                          registerAccount: authState.registerAccount,
+                          signInWithEmailAndPassword:
+                              authState.signInWithEmailAndPassword,
+                        )
+                      : MyHomePage(
+                          currentUser: authState.currentUser!,
+                        ))
         });
   }
 }

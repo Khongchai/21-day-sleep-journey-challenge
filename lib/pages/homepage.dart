@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StackContainer(children: [
+      body: StyledStackContainer(children: [
         const MoonAndStarsBackground(),
         Stack(children: [
           WelcomeText(username: widget.currentUser.displayName!),

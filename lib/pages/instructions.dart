@@ -16,7 +16,7 @@ class Instructions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StackContainer(children: [
+      body: StyledStackContainer(children: [
         const MaskAndClouds(),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,

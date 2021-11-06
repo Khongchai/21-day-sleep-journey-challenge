@@ -36,7 +36,7 @@ class Authentication extends StatelessWidget {
     switch (loginState) {
       case ApplicationLoginState.showingLoginPage:
         return Scaffold(
-          body: StackContainer(
+          body: StyledStackContainer(
             children: [
               LogInForm(
                   startRegister: startRegister,
@@ -46,7 +46,7 @@ class Authentication extends StatelessWidget {
         );
       case ApplicationLoginState.showingRegisterPage:
         return Scaffold(
-          body: StackContainer(
+          body: StyledStackContainer(
             children: [
               RegisterForm(
                 startLogin: startLogin,

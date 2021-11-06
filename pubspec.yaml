@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^1.9.0
   firebase_auth: ^3.1.5
   cloud_firestore: ^3.0.0
+  flutter_svg: ^0.23.0+1
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +68,7 @@ flutter:
     - assets/background1/stars1.png
     - assets/background2/cloud.png
     - assets/background2/sleep-mask.png
-    - assets/decor/sheep.png
+    - assets/decor/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

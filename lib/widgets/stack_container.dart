@@ -1,10 +1,11 @@
 import "package:flutter/material.dart";
 import 'package:yawwn/constants/colors.dart';
 
-class StackContainer extends StatelessWidget {
+class StyledStackContainer extends StatelessWidget {
   final List<Widget> children;
 
-  const StackContainer({Key? key, required this.children}) : super(key: key);
+  const StyledStackContainer({Key? key, required this.children})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

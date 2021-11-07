@@ -1,6 +1,7 @@
 import "dart:math";
 import "dart:ui";
 
+import 'gen_on_demand.dart';
 import 'inverse_lerp.dart';
 
 void setLineDash(
@@ -17,7 +18,7 @@ void setLineDash(
      */
   final _segments =
       segments.length % 2 == 0 ? segments : [...segments, ...segments];
-  final generator = _GenOnDemand(_segments);
+  final generator = GenOnDemand(_segments);
 
   int i = 0;
   double beginX = 0;
@@ -46,17 +47,4 @@ void setLineDash(
     lastPos = curPos;
     curPos += generator.next();
   } while (curPos < distance);
-}
-
-//next() function acts like javascript generator's next()
-class _GenOnDemand {
-  int i = 0;
-  List<double> array;
-  _GenOnDemand(this.array);
-
-  double next() {
-    double num = array[i];
-    i = (i + 1) % array.length;
-    return num;
-  }
 }

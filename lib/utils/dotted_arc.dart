@@ -1,6 +1,8 @@
 import 'dart:math';
 import "dart:ui";
 
+import 'gen_on_demand.dart';
+
 /*
   Angles should be in degrees.
 
@@ -26,7 +28,7 @@ void setArcDash(
      */
   final _segments =
       segments.length % 2 == 0 ? segments : [...segments, ...segments];
-  final generator = _GenOnDemand(_segments);
+  final generator = GenOnDemand(_segments);
 
   final trueCenterX = centerX - radiusX / 2;
   final trueCenterY = centerY - radiusY / 2;
@@ -50,17 +52,4 @@ void setArcDash(
     _curAngle += generator.next();
     _sweepAmount = (_curAngle - _lastAngle.abs());
   } while (_curAngle + _sweepAmount < endAngle);
-}
-
-//next() function acts like javascript generator's next()
-class _GenOnDemand {
-  int i = 0;
-  List<double> array;
-  _GenOnDemand(this.array);
-
-  double next() {
-    double num = array[i];
-    i = (i + 1) % array.length;
-    return num;
-  }
 }

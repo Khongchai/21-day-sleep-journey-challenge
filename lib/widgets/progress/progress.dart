@@ -15,18 +15,8 @@ class _ProgressUIState extends State<ProgressUI> {
 
   @override
   Widget build(BuildContext context) {
-    final dottedLinePathPoints = DottedLinePathPoints();
-
     return Stack(
       children: [
-        Positioned(
-          top: 0,
-          left: 0,
-          child: CustomPaint(
-            painter: dottedLinePathPoints,
-            child: Container(),
-          ),
-        ),
         GridView.count(
             crossAxisCount: 4,
             mainAxisSpacing: 5,
@@ -34,51 +24,51 @@ class _ProgressUIState extends State<ProgressUI> {
             children: [
               Center(
                   child: const Text("Start"),
-                  key: dottedLinePathPoints.startLine1),
+                  key: DottedLinePathPoints.startLine1),
               const GridItem(text: "Day 1"),
               const GridItem(
                 svgImagePath: assetPath + "moon-stars.svg",
               ),
               GridItem(
                   svgImagePath: assetPath + "rainbow.svg",
-                  key: dottedLinePathPoints.endLine1),
-              GridItem(text: "Day 7", key: dottedLinePathPoints.startLine2),
+                  key: DottedLinePathPoints.endLine1),
+              GridItem(text: "Day 7", key: DottedLinePathPoints.startLine2),
               const GridItem(svgImagePath: assetPath + "sheep.svg"),
               const GridItem(svgImagePath: assetPath + "star-rainbow.svg"),
               GridItem(
                   svgImagePath: assetPath + "cloud-falling-stars.svg",
-                  key: dottedLinePathPoints.endLine2),
+                  key: DottedLinePathPoints.endLine2),
               GridItem(
                   svgImagePath: assetPath + "zzz.svg",
-                  key: dottedLinePathPoints.startLine3),
+                  key: DottedLinePathPoints.startLine3),
               const GridItem(svgImagePath: assetPath + "sleep-mask.svg"),
               const GridItem(svgImagePath: assetPath + "clouds.svg"),
               GridItem(
                   svgImagePath: assetPath + "star.svg",
-                  key: dottedLinePathPoints.endLine3),
+                  key: DottedLinePathPoints.endLine3),
               GridItem(
                   svgImagePath: assetPath + "wecker.svg",
-                  key: dottedLinePathPoints.startLine4),
+                  key: DottedLinePathPoints.startLine4),
               const GridItem(text: "Day 14"),
               const GridItem(svgImagePath: assetPath + "rainbow2.svg"),
               GridItem(
                   svgImagePath: assetPath + "cloud-falling-stars.svg",
-                  key: dottedLinePathPoints.endLine4),
+                  key: DottedLinePathPoints.endLine4),
               GridItem(
                   svgImagePath: assetPath + "sheep.svg",
-                  key: dottedLinePathPoints.startLine5),
+                  key: DottedLinePathPoints.startLine5),
               const GridItem(svgImagePath: assetPath + "star-rainbow2.svg"),
               const GridItem(svgImagePath: assetPath + "sleeping-hat.svg"),
               GridItem(
                   svgImagePath: assetPath + "sheep.svg",
-                  key: dottedLinePathPoints.endLine5),
+                  key: DottedLinePathPoints.endLine5),
               const Center(child: Text("tap")),
               GiftBox(
-                  assetPath: assetPath, key: dottedLinePathPoints.startLine6),
+                  assetPath: assetPath, key: DottedLinePathPoints.startLine6),
               const GridItem(text: "Day 21"),
               GridItem(
                   svgImagePath: assetPath + "moon-stars.svg",
-                  key: dottedLinePathPoints.endLine6),
+                  key: DottedLinePathPoints.endLine6),
             ]),
       ],
     );

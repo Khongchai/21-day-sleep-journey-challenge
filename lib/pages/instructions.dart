@@ -62,8 +62,14 @@ class Instructions extends StatelessWidget {
                 },
                 goBackwardText: "Maybe Later",
                 goForwardText: "Let's go!",
-                forwardOnPressed: () =>
-                    Navigator.pushNamed(context, Progress.route)))
+                forwardOnPressed: () => Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            const Progress(),
+                        transitionDuration: Duration.zero,
+                      ),
+                    )))
       ]),
     );
   }

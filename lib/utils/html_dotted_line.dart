@@ -1,6 +1,7 @@
 import "dart:math";
+import "dart:ui";
 
-import "package:flutter/material.dart";
+import 'inverse_lerp.dart';
 
 void setLineDash(
     Canvas canvas, Offset p1, Offset p2, Paint paint, List<double> segments) {
@@ -30,8 +31,8 @@ void setLineDash(
 
     //print line every other iteration
     if (i % 2 != 0) {
-      double beginWeight = _inverseLerp(0, distance, lastPos);
-      double endWeight = _inverseLerp(0, distance, curPos);
+      double beginWeight = inverseLerp(0, distance, lastPos);
+      double endWeight = inverseLerp(0, distance, curPos);
 
       beginX = p1.dx + diffX * beginWeight;
       beginY = p1.dy + diffY * beginWeight;
@@ -45,10 +46,6 @@ void setLineDash(
     lastPos = curPos;
     curPos += generator.next();
   } while (curPos < distance);
-}
-
-double _inverseLerp(double x, double y, double value) {
-  return (value - x) / (y - x);
 }
 
 //next() function acts like javascript generator's next()

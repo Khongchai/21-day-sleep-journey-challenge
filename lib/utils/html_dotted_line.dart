@@ -2,7 +2,7 @@ import "dart:math";
 
 import "package:flutter/material.dart";
 
-void setLinedash(
+void setLineDash(
     Canvas canvas, Offset p1, Offset p2, Paint paint, List<double> segments) {
   final diffX = (p1.dx - p2.dx).abs();
   final diffY = (p1.dy - p2.dy).abs();
@@ -16,7 +16,7 @@ void setLinedash(
      */
   final _segments =
       segments.length % 2 == 0 ? segments : [...segments, ...segments];
-  final generator = GenOnDemand(_segments);
+  final generator = _GenOnDemand(_segments);
 
   int i = 0;
   double beginX = 0;
@@ -30,8 +30,8 @@ void setLinedash(
 
     //print line every other iteration
     if (i % 2 != 0) {
-      double beginWeight = inverseLerp(0, distance, lastPos);
-      double endWeight = inverseLerp(0, distance, curPos);
+      double beginWeight = _inverseLerp(0, distance, lastPos);
+      double endWeight = _inverseLerp(0, distance, curPos);
 
       beginX = p1.dx + diffX * beginWeight;
       beginY = p1.dy + diffY * beginWeight;
@@ -47,15 +47,15 @@ void setLinedash(
   } while (curPos < distance);
 }
 
-double inverseLerp(double x, double y, double value) {
+double _inverseLerp(double x, double y, double value) {
   return (value - x) / (y - x);
 }
 
 //next() function acts like javascript generator's next()
-class GenOnDemand {
+class _GenOnDemand {
   int i = 0;
   List<double> array;
-  GenOnDemand(this.array);
+  _GenOnDemand(this.array);
 
   double next() {
     double num = array[i];

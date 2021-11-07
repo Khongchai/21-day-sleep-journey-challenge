@@ -2,6 +2,7 @@ import 'dart:math';
 
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
+import 'package:yawwn/utils/html_dotted_line.dart';
 
 class DottedLinePathPoints extends CustomPainter {
   static final startLine1 = GlobalKey();
@@ -34,16 +35,21 @@ class DottedLinePathPoints extends CustomPainter {
 
     final paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2
+      ..strokeWidth = 1
       ..color = const Color(0xffffffff);
     const lines = [5.0, 5.0];
-    setLinedash(canvas, firstLineBegin, firstLineEnd, paint, lines);
-    setLinedash(canvas, secondLineBegin, secondLineEnd, paint, lines);
-    setLinedash(canvas, thirdLineBegin, thirdLineEnd, paint, lines);
-    setLinedash(canvas, fourthLineBegin, fourthLineEnd, paint, lines);
-    setLinedash(canvas, fifthLineBegin, fifthLineEnd, paint, lines);
-    setLinedash(canvas, sixthLineBegin, sixthLineEnd, paint, lines);
-    //TODO => draw arcs
+    setLineDash(canvas, firstLineBegin, firstLineEnd, paint, lines);
+    setLineDash(canvas, secondLineBegin, secondLineEnd, paint, lines);
+    setLineDash(canvas, thirdLineBegin, thirdLineEnd, paint, lines);
+    setLineDash(canvas, fourthLineBegin, fourthLineEnd, paint, lines);
+    setLineDash(canvas, fifthLineBegin, fifthLineEnd, paint, lines);
+    setLineDash(canvas, sixthLineBegin, sixthLineEnd, paint, lines);
+
+    double arcsCenterX = firstLineEnd.dx;
+    double firstArcCenterY =
+        firstLineEnd.dy + (secondLineEnd.dy - firstLineEnd.dy) / 2;
+    setArcDash(
+        canvas, arcsCenterX, firstArcCenterY, 80, paint, 270, 360 + 90, lines);
   }
 
   @override
@@ -64,58 +70,51 @@ class DottedLinePathPoints extends CustomPainter {
   }
 }
 
-void setLinedash(
-    Canvas canvas, Offset p1, Offset p2, Paint paint, List<double> segments) {
-  final diffX = (p1.dx - p2.dx).abs();
-  final diffY = (p1.dy - p2.dy).abs();
-  final distance = sqrt(pow(diffX, 2) + pow(diffY, 2));
-
+/*
+  Angles should be in degrees
+ */
+void setArcDash(Canvas canvas, double centerX, double centerY, double radius,
+    Paint paint, double beginAngle, double endAngle, List<double> segments,
+    [bool useCenter = false]) {
   /*
-      [5, 15] => [0, 15] even length
-      [5, 15, 16] => [5, 15, 16, 5, 15, 16] odd length
+      when array has even length
+      [5, 15] => [0, 15]
+      when array has odd length
+      [5, 15, 16] => [5, 15, 16, 5, 15, 16]
      */
   final _segments =
       segments.length % 2 == 0 ? segments : [...segments, ...segments];
-  final generator = GenOnDemand(_segments);
+  final generator = _GenOnDemand(_segments);
 
+  final trueCenterX = centerX - radius / 2;
+  final trueCenterY = centerY - radius / 2;
+  double _curAngle = beginAngle;
+  double _lastAngle = beginAngle;
+  double _sweepAmount = 0;
   int i = 0;
-  double beginX = 0;
-  double beginY = 0;
-  double endX = 0;
-  double endY = 0;
-  double curPos = 0;
-  double lastPos = 0;
+
+  bool doneOnce = false;
   do {
-    if (curPos > distance) break;
-
-    //print line every other iteration
-    if (i % 2 != 0) {
-      double beginWeight = inverseLerp(0, distance, lastPos);
-      double endWeight = inverseLerp(0, distance, curPos);
-
-      beginX = p1.dx + diffX * beginWeight;
-      beginY = p1.dy + diffY * beginWeight;
-      endX = p1.dx + diffX * endWeight;
-      endY = p1.dy + diffY * endWeight;
-
-      canvas.drawLine(Offset(beginX, beginY), Offset(endX, endY), paint);
+    // Draw arc line every other iteration;
+    if (i % 2 != 0 && !doneOnce) {
+      double cur = _curAngle * (pi / 180);
+      double sweep = _sweepAmount * (pi / 180);
+      canvas.drawArc(Offset(trueCenterX, trueCenterY) & Size(radius, radius),
+          cur, sweep, useCenter, paint);
     }
 
     i++;
-    lastPos = curPos;
-    curPos += generator.next();
-  } while (curPos < distance);
-}
-
-double inverseLerp(double x, double y, double value) {
-  return (value - x) / (y - x);
+    _lastAngle = _curAngle;
+    _curAngle += generator.next();
+    _sweepAmount = (_curAngle - _lastAngle.abs());
+  } while (_curAngle + _sweepAmount < endAngle);
 }
 
 //next() function acts like javascript generator's next()
-class GenOnDemand {
+class _GenOnDemand {
   int i = 0;
   List<double> array;
-  GenOnDemand(this.array);
+  _GenOnDemand(this.array);
 
   double next() {
     double num = array[i];

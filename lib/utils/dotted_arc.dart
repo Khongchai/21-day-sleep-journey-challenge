@@ -37,10 +37,9 @@ void setArcDash(
   double _sweepAmount = 0;
   int i = 0;
 
-  bool doneOnce = false;
   do {
     // Draw arc line every other iteration;
-    if (i % 2 != 0 && !doneOnce) {
+    if (i % 2 != 0) {
       double cur = _curAngle * (pi / 180);
       double sweep = _sweepAmount * (pi / 180);
       canvas.drawArc(Offset(trueCenterX, trueCenterY) & Size(radiusX, radiusY),

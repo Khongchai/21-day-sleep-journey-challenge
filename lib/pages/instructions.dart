@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
-import 'package:yawwn/global_state/authentication_state.dart';
+import 'package:yawwn/global_state/app_state.dart';
 import 'package:yawwn/pages/progress.dart';
 import 'package:yawwn/utils/show_two_buttons_dialog.dart';
 import 'package:yawwn/widgets/background_decorations/mask_and_clouds.dart';
@@ -51,7 +51,7 @@ class Instructions extends StatelessWidget {
             )
           ],
         ),
-        Consumer<AuthenticationState>(
+        Consumer<AppState>(
             builder: (context, authState, _) => BottomNavigationButton(
                 backwardOnPressed: () {
                   showTwoButtonsDialog(

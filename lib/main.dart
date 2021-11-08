@@ -6,12 +6,12 @@ import 'package:yawwn/pages/instructions.dart';
 import 'package:yawwn/pages/progress.dart';
 import 'package:yawwn/widgets/authentication/login_state_enum.dart';
 
-import 'global_state/authentication_state.dart';
+import 'global_state/app_state.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
-        create: (context) => AuthenticationState(),
+        create: (context) => AppState(),
         builder: (context, _) => const MyApp()),
   );
 }
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         routes: {
           Instructions.route: (context) => const Instructions(),
           Progress.route: (context) => const Progress(),
-          Authentication.route: (context) => Consumer<AuthenticationState>(
+          Authentication.route: (context) => Consumer<AppState>(
               builder: (context, authState, _) =>
                   authState.loginState != ApplicationLoginState.loggedIn
                       ? Authentication(

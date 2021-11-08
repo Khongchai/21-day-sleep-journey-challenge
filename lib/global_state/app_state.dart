@@ -1,10 +1,13 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yawwn/widgets/authentication/login_state_enum.dart';
 
-class AuthenticationState extends ChangeNotifier {
-  AuthenticationState() {
+class AppState extends ChangeNotifier {
+  AppState() {
     init();
   }
 
@@ -15,12 +18,37 @@ class AuthenticationState extends ChangeNotifier {
       if (user != null) {
         _currentUser = user;
         _loginState = ApplicationLoginState.loggedIn;
+
+        _userDayProgressSubscription = FirebaseFirestore.instance
+            .collection("userData")
+            .doc(user.uid)
+            .snapshots()
+            .listen((snapshot) {
+          _userDayProgress = snapshot.get("day");
+          print(_userDayProgress);
+        });
       } else {
         _loginState = ApplicationLoginState.showingLoginPage;
       }
       notifyListeners();
     });
   }
+
+  //How far the user is from the last day
+  int _userDayProgress = 0;
+  int get userDayProgress => _userDayProgress;
+  StreamSubscription<DocumentSnapshot>? _userDayProgressSubscription;
+  set userDayProgress(int day) {
+    if (_loginState != ApplicationLoginState.loggedIn) {
+      throw Exception("Must be logged in!");
+    }
+    FirebaseFirestore.instance
+        .collection("userData")
+        .doc("progress")
+        .set({"day": day});
+  }
+
+  //Auth stuff
 
   User? _currentUser;
   User? get currentUser => _currentUser;

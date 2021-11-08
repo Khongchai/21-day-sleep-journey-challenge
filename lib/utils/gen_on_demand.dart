@@ -7,6 +7,6 @@ class GenOnDemand {
   double next() {
     double num = array[i];
     i = (i + 1) % array.length;
-    return num;
+    return num.abs();
   }
 }

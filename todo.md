@@ -1,1 +1,1 @@
-Fix line jumping around by calling it in the initstate method or something
+call consumer and get the day progress value and use that to set the progress status

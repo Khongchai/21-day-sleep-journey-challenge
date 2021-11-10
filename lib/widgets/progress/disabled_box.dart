@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 class DisabledOverlayBox extends StatelessWidget {
   final BorderRadius borderRadius;
   final Color color;
+
   const DisabledOverlayBox(
       {required this.color, required this.borderRadius, Key? key})
       : super(key: key);

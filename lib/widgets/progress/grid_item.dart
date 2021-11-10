@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
+import 'package:yawwn/global_state/app_state.dart';
 
 import 'grid_item_content.dart';
 
-//TODO => call consumer here and compare user position with the position
 class GridItem extends StatelessWidget {
   final String? text;
   final String? svgImagePath;
@@ -24,27 +25,31 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(10);
     const cardColor = Color(0xff504098);
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: borderRadius),
-      color: cardColor,
-      elevation: activated ? 5 : 0,
-      child: Container(
-        decoration: isCurrent
-            ? BoxDecoration(
-                border: Border.all(
-                  color: Colors.white,
-                  width: 1.0,
-                ),
-              )
-            : null,
-        child: GridItemContent(
-          cardColor: cardColor,
-          borderRadius: borderRadius,
-          activated: activated,
-          svgImagePath: svgImagePath,
-          text: text,
-        ),
-      ),
+    return Consumer<AppState>(
+      builder: (context, appState, child) {
+        return Card(
+          shape: RoundedRectangleBorder(borderRadius: borderRadius),
+          color: cardColor,
+          elevation: activated ? 5 : 0,
+          child: Container(
+            decoration: isCurrent
+                ? BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1.0,
+                    ),
+                  )
+                : null,
+            child: GridItemContent(
+              cardColor: cardColor,
+              borderRadius: borderRadius,
+              activated: activated,
+              svgImagePath: svgImagePath,
+              text: text,
+            ),
+          ),
+        );
+      },
     );
   }
 }

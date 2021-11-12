@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import 'package:yawwn/widgets/background_decorations/moon_and_stars_background.dart';
 import 'package:yawwn/widgets/progress/dotted_line_path_points.dart';
 import 'package:yawwn/widgets/progress/progress.dart';
@@ -12,6 +13,9 @@ class Progress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
     final dottedLinePathPoints = DottedLinePathPoints();
 
     return Scaffold(

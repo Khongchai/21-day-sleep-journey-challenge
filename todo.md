@@ -1,1 +1,1 @@
-call consumer and get the day progress value and use that to set the progress status
+Refactor daily_instructions.dart and style the button conditionally

@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:yawwn/constants/colors.dart';
 
-class BottomNavigationButton extends StatelessWidget {
+class BottomNavigationButtons extends StatelessWidget {
   final String goForwardText;
   final VoidCallback forwardOnPressed;
 
   final String? goBackwardText;
   final VoidCallback? backwardOnPressed;
 
-  const BottomNavigationButton(
+  const BottomNavigationButtons(
       {Key? key,
       required this.forwardOnPressed,
       required this.goForwardText,

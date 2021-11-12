@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:provider/provider.dart";
+import 'package:yawwn/constants/navigation/routes.dart';
 import 'package:yawwn/pages/authentication/authentication.dart';
-import 'package:yawwn/pages/homepage.dart';
-import 'package:yawwn/pages/instructions.dart';
-import 'package:yawwn/pages/progress.dart';
-import 'package:yawwn/widgets/authentication/login_state_enum.dart';
 
 import 'global_state/app_state.dart';
 
@@ -25,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+            unselectedWidgetColor: Colors.white,
             textTheme: const TextTheme(
               headline1: TextStyle(
                   color: Colors.white,
@@ -40,27 +38,11 @@ class MyApp extends StatelessWidget {
                   height: 1.4,
                   fontWeight: FontWeight.w600,
                   fontSize: 16),
+              caption: TextStyle(color: Color(0xffB0ABC7)),
             ),
             primaryColor: const Color(0xFF084FFF),
             backgroundColor: const Color(0xFF291467)),
         initialRoute: Authentication.route,
-        routes: {
-          Instructions.route: (context) => const Instructions(),
-          Progress.route: (context) => const Progress(),
-          Authentication.route: (context) => Consumer<AppState>(
-              builder: (context, authState, _) =>
-                  authState.loginState != ApplicationLoginState.loggedIn
-                      ? Authentication(
-                          loginState: authState.loginState,
-                          startLogin: authState.startLogin,
-                          startRegister: authState.startRegister,
-                          registerAccount: authState.registerAccount,
-                          signInWithEmailAndPassword:
-                              authState.signInWithEmailAndPassword,
-                        )
-                      : MyHomePage(
-                          currentUser: authState.currentUser!,
-                        ))
-        });
+        routes: routes);
   }
 }

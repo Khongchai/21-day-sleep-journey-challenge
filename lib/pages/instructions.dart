@@ -52,7 +52,7 @@ class Instructions extends StatelessWidget {
           ],
         ),
         Consumer<AppState>(
-            builder: (context, authState, _) => BottomNavigationButton(
+            builder: (context, authState, _) => BottomNavigationButtons(
                 backwardOnPressed: () {
                   showTwoButtonsDialog(
                     context,
@@ -69,7 +69,7 @@ class Instructions extends StatelessWidget {
                             const Progress(),
                         transitionDuration: Duration.zero,
                       ),
-                    )))
+                    ))),
       ]),
     );
   }

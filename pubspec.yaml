@@ -64,11 +64,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/background1/background.png
-    - assets/background1/comets.png
-    - assets/background1/stars1.png
-    - assets/background2/cloud.png
-    - assets/background2/sleep-mask.png
+    - assets/background1/
+    - assets/background2/
+    - assets/background3/
+    - assets/background3/sky_bg.svg
     - assets/decor/
 
   # An image asset can refer to one or more resolution-specific "variants", see

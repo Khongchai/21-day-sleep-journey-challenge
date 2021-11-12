@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
         const MoonAndStarsBackground(),
         Stack(children: [
           WelcomeText(username: widget.currentUser.displayName!),
-          BottomNavigationButton(
+          BottomNavigationButtons(
             goForwardText: "Let's Begin",
             forwardOnPressed: () =>
                 Navigator.pushNamed(context, Instructions.route),

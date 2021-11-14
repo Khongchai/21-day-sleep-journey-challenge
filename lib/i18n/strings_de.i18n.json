@@ -1,0 +1,9 @@
+{
+  "welcome_text":{
+    "title": "21 Tage",
+    "greeting": "Halo, $username",
+    "description1": "Ihre Reise zu einem gesündern",
+    "description2": "Leben und besserem Schalf."
+  },
+  "begin_button": "Los Geht's!"
+}

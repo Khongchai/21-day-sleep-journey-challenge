@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
-import 'package:yawwn/constants/colors.dart';
 import 'package:yawwn/global_state/app_state.dart';
 import 'package:yawwn/widgets/background_decorations/sleeping_guy_under_the_stars.dart';
+import 'package:yawwn/widgets/daily_instructions/check_button.dart';
 import 'package:yawwn/widgets/daily_instructions/step.dart';
 import 'package:yawwn/widgets/stack_container.dart';
 
@@ -85,29 +85,7 @@ class _DailyInstructionsState extends State<DailyInstructions> {
                   color: const Color(0xff232274),
                   borderRadius: BorderRadius.circular(10.0))),
         ]),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: ElevatedButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5))),
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(appColors.accent),
-              ),
-              onPressed: checkboxState.bothChecked()
-                  ? () {
-                      print("Check tapped");
-                    }
-                  : null,
-              child: Row(
-                children: const [
-                  Icon(Icons.check),
-                  Text("Check", style: TextStyle(fontSize: 18)),
-                ],
-              )),
-        ),
+        CheckButton(enableCondition: checkboxState.bothChecked())
       ]),
     );
   }

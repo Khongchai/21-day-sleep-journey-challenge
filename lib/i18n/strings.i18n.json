@@ -1,0 +1,9 @@
+{
+  "welcome_text":{
+    "title": "21 DAYS",
+    "greeting": "Hello, $username",
+    "description1": "Your journey to a healthier",
+    "description2": "life and better sleep routine."
+  },
+  "begin_button": "Let's Begin!"
+}

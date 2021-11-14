@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:provider/provider.dart";
 import 'package:yawwn/constants/navigation/routes.dart';
 import 'package:yawwn/pages/authentication/authentication.dart';
 
 import 'global_state/app_state.dart';
+import 'i18n/strings.g.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ChangeNotifierProvider(
         create: (context) => AppState(),
-        builder: (context, _) => const MyApp()),
+        builder: (context, _) => TranslationProvider(child: const MyApp())),
   );
 }
 
@@ -20,7 +23,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: "Yawwn",
+        locale: TranslationProvider.of(context).flutterLocale,
+        supportedLocales: LocaleSettings.supportedLocales,
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
         theme: ThemeData(
             unselectedWidgetColor: Colors.white,
             textTheme: const TextTheme(

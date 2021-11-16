@@ -85,7 +85,7 @@ class _DailyInstructionsState extends State<DailyInstructions> {
                   color: const Color(0xff232274),
                   borderRadius: BorderRadius.circular(10.0))),
         ]),
-        CheckButton(enableCondition: checkboxState.bothChecked())
+        CheckButton(enabled: checkboxState.bothChecked())
       ]),
     );
   }

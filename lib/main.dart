@@ -14,11 +14,6 @@ void main() {
     ChangeNotifierProvider(create: (_) => AppState()),
     ChangeNotifierProvider(create: (_) => SharedPrefsState())
   ], child: TranslationProvider(child: const MyApp())));
-  // runApp(
-  //   ChangeNotifierProvider(
-  //       create: (context) => AppState(),
-  //       builder: (context, _) => TranslationProvider(child: const MyApp())),
-  // );
 }
 
 class MyApp extends StatelessWidget {

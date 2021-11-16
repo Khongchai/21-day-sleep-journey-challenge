@@ -5,7 +5,7 @@ import 'package:yawwn/i18n/strings.g.dart';
 import 'package:yawwn/pages/instructions.dart';
 import 'package:yawwn/widgets/background_decorations/moon_and_stars_background.dart';
 import 'package:yawwn/widgets/bottom_navigation_buttons.dart';
-import 'package:yawwn/widgets/landing/welcome_text.dart';
+import 'package:yawwn/widgets/homepage/welcome_text.dart';
 import 'package:yawwn/widgets/stack_container.dart';
 
 class MyHomePage extends StatefulWidget {

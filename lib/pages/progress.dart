@@ -34,8 +34,7 @@ class Progress extends StatelessWidget {
           width: 1 / 0,
           child: Column(children: const [
             ProgressHeader(),
-            SizedBox(height: 40),
-            Flexible(flex: 80, child: ProgressUI())
+            Flexible(flex: 100, child: ProgressUI())
           ]),
         )
       ]),

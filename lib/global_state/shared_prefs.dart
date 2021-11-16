@@ -7,35 +7,44 @@ class SharedPrefsState extends ChangeNotifier {
     init();
   }
 
+  static const _localeKey = "locale";
   final Future<SharedPreferences> _sharedPref = SharedPreferences.getInstance();
-  late SharedPreferences _pref;
   Future<SharedPreferences> get sharedPref => _sharedPref;
 
-  String selectedLang = "";
+  late SharedPreferences _pref;
+
+  String defaultLocale = "en";
+  String _selectedLocale = "en";
+  String get selectedLocale => _selectedLocale;
 
   init() async {
-    selectedLang = _pref.getString("locale") ?? "";
-    if (selectedLang != "") LocaleSettings.setLocaleRaw(selectedLang);
     _pref = await _sharedPref;
 
-    notifyListeners();
-  }
-
-  Future<void> setAppLangToGerman() async {
-    LocaleSettings.setLocale(AppLocale.de);
-    _pref.setString("locale", AppLocale.de.languageTag);
+    _selectedLocale = _pref.getString(_localeKey) ?? defaultLocale;
+    LocaleSettings.setLocaleRaw(_selectedLocale);
 
     notifyListeners();
   }
 
-  Future<void> setAppLangToEnglish() async {
-    LocaleSettings.setLocale(AppLocale.en);
-    _pref.setString("locale", AppLocale.en.languageTag);
+  Future<void> setAppLocaleToGerman() async {
+    switchLang(AppLocale.de);
 
     notifyListeners();
+  }
+
+  Future<void> setAppLocaleToEnglish() async {
+    switchLang(AppLocale.en);
   }
 
   String getSelectedLocale() {
-    return selectedLang;
+    return _selectedLocale;
+  }
+
+  void switchLang(AppLocale locale) {
+    LocaleSettings.setLocale(locale);
+    _pref.setString(_localeKey, locale.languageTag);
+    _selectedLocale = locale.languageTag;
+
+    notifyListeners();
   }
 }

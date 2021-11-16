@@ -10,6 +10,7 @@ class WelcomeText extends StatelessWidget {
   const WelcomeText({required this.username, required this.prefs, Key? key})
       : super(key: key);
 
+  //TODO add consumer here
   @override
   Widget build(BuildContext context) {
     final selectedLocale = prefs.getString("locale");

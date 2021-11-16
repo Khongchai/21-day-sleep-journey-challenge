@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import "package:provider/provider.dart";
 import 'package:yawwn/constants/navigation/routes.dart';
+import 'package:yawwn/global_state/shared_prefs.dart';
 import 'package:yawwn/pages/authentication/authentication.dart';
 
 import 'global_state/app_state.dart';
@@ -9,11 +10,15 @@ import 'i18n/strings.g.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    ChangeNotifierProvider(
-        create: (context) => AppState(),
-        builder: (context, _) => TranslationProvider(child: const MyApp())),
-  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AppState()),
+    ChangeNotifierProvider(create: (_) => SharedPrefsState())
+  ], child: TranslationProvider(child: const MyApp())));
+  // runApp(
+  //   ChangeNotifierProvider(
+  //       create: (context) => AppState(),
+  //       builder: (context, _) => TranslationProvider(child: const MyApp())),
+  // );
 }
 
 class MyApp extends StatelessWidget {

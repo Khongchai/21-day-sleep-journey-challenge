@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yawwn/global_state/shared_prefs.dart';
 import 'package:yawwn/i18n/strings.g.dart';
-import 'package:yawwn/widgets/landing/switch_language_button.dart';
+import 'package:yawwn/widgets/homepage/switch_language_button.dart';
 
 class WelcomeText extends StatelessWidget {
   final String username;

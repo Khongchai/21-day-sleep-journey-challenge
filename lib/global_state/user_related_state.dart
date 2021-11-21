@@ -6,8 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yawwn/widgets/authentication/login_state_enum.dart';
 
-class AppState extends ChangeNotifier {
-  AppState() {
+class UserRelatedState extends ChangeNotifier {
+  UserRelatedState() {
     init();
   }
 
@@ -19,33 +19,43 @@ class AppState extends ChangeNotifier {
         _currentUser = user;
         _loginState = ApplicationLoginState.loggedIn;
 
+        userId = user.uid;
+
         _userDayProgressSubscription = FirebaseFirestore.instance
             .collection("userData")
             .doc(user.uid)
             .snapshots()
             .listen((snapshot) {
-          _userDayProgress = snapshot.get("day");
-          print(_userDayProgress);
+          if (snapshot.exists) {
+            _userDayProgress = snapshot.get("day");
+            notifyListeners();
+          }
         });
       } else {
         _loginState = ApplicationLoginState.showingLoginPage;
+        _userDayProgressSubscription?.cancel();
       }
       notifyListeners();
     });
   }
 
   //How far the user is from the last day
+  late final String userId;
   int _userDayProgress = 0;
   int get userDayProgress => _userDayProgress;
   StreamSubscription<DocumentSnapshot>? _userDayProgressSubscription;
+
   set userDayProgress(int day) {
     if (_loginState != ApplicationLoginState.loggedIn) {
       throw Exception("Must be logged in!");
     }
+
     FirebaseFirestore.instance
         .collection("userData")
-        .doc("progress")
+        .doc(userId)
         .set({"day": day});
+
+    notifyListeners();
   }
 
   //Auth stuff

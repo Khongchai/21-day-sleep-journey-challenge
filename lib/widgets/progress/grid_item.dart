@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
-import 'package:yawwn/global_state/app_state.dart';
+import 'package:yawwn/global_state/user_related_state.dart';
 import 'package:yawwn/pages/daily_instructions.dart';
 
 import 'grid_item_content.dart';
@@ -19,14 +19,15 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(10);
     const cardColor = Color(0xff504098);
-    return Consumer<AppState>(
+    return Consumer<UserRelatedState>(
       builder: (context, appState, child) {
         final isCurrent = position == appState.userDayProgress;
         final activated = position <= appState.userDayProgress;
 
         return GestureDetector(
           onTap: isCurrent
-              ? () => Navigator.pushNamed(context, DailyInstructions.route)
+              ? () => Navigator.pushNamed(context, DailyInstructions.route,
+                  arguments: {"selectedDay": position})
               : null,
           child: Card(
             shape: RoundedRectangleBorder(borderRadius: borderRadius),

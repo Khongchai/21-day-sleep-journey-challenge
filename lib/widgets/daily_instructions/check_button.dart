@@ -4,7 +4,10 @@ import 'package:yawwn/widgets/daily_instructions/utils/shwo_alert_dialog.dart';
 
 class CheckButton extends StatelessWidget {
   final bool enabled;
-  const CheckButton({required this.enabled, Key? key}) : super(key: key);
+  final VoidCallback onPressed;
+
+  const CheckButton({required this.onPressed, required this.enabled, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,12 @@ class CheckButton extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         backgroundColor: MaterialStateProperty.all<Color>(appColors.accent),
       ),
-      onPressed: enabled ? () => showAlertDialog(context) : null,
+      onPressed: enabled
+          ? () {
+              showAlertDialog(context);
+              onPressed();
+            }
+          : null,
       child: buildButtonContent(const Color(0xff000000)),
     );
   }

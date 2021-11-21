@@ -39,9 +39,9 @@ class _ProgressUIState extends State<ProgressUI> {
               const GridItem(
                   svgImagePath: assetPath + "sheep.svg", position: 5),
               const GridItem(
-                  svgImagePath: assetPath + "star-rainbow.svg", position: 3),
+                  svgImagePath: assetPath + "star-rainbow.svg", position: 4),
               GridItem(
-                  position: 6,
+                  position: 3,
                   svgImagePath: assetPath + "cloud-falling-stars.svg",
                   key: DottedLinePathPoints.endLine2),
               GridItem(
@@ -53,18 +53,18 @@ class _ProgressUIState extends State<ProgressUI> {
               const GridItem(
                   position: 9, svgImagePath: assetPath + "clouds.svg"),
               GridItem(
-                  position: 13,
+                  position: 10,
                   svgImagePath: assetPath + "star.svg",
                   key: DottedLinePathPoints.endLine3),
               GridItem(
-                  position: 12,
+                  position: 14,
                   svgImagePath: assetPath + "wecker.svg",
                   key: DottedLinePathPoints.startLine4),
-              const GridItem(position: 11, text: "Day 14"),
+              const GridItem(position: 13, text: "Day 14"),
               const GridItem(
-                  position: 10, svgImagePath: assetPath + "rainbow2.svg"),
+                  position: 12, svgImagePath: assetPath + "rainbow2.svg"),
               GridItem(
-                  position: 14,
+                  position: 11,
                   svgImagePath: assetPath + "cloud-falling-stars.svg",
                   key: DottedLinePathPoints.endLine4),
               GridItem(
@@ -82,9 +82,9 @@ class _ProgressUIState extends State<ProgressUI> {
               const Center(child: Text("tap")),
               GiftBox(
                   assetPath: assetPath, key: DottedLinePathPoints.startLine6),
-              const GridItem(text: "Day 21", position: 21),
+              const GridItem(text: "Day 21", position: 20),
               GridItem(
-                  position: 20,
+                  position: 19,
                   svgImagePath: assetPath + "moon-stars.svg",
                   key: DottedLinePathPoints.endLine6),
             ]),

@@ -5,13 +5,13 @@ import 'package:yawwn/constants/navigation/routes.dart';
 import 'package:yawwn/global_state/shared_prefs.dart';
 import 'package:yawwn/pages/authentication/authentication.dart';
 
-import 'global_state/app_state.dart';
+import 'global_state/user_related_state.dart';
 import 'i18n/strings.g.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => AppState()),
+    ChangeNotifierProvider(create: (_) => UserRelatedState()),
     ChangeNotifierProvider(create: (_) => SharedPrefsState())
   ], child: TranslationProvider(child: const MyApp())));
 }

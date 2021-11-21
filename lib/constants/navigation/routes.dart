@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
-import 'package:yawwn/global_state/app_state.dart';
+import 'package:yawwn/global_state/user_related_state.dart';
 import 'package:yawwn/pages/authentication/authentication.dart';
 import 'package:yawwn/pages/daily_instructions.dart';
 import 'package:yawwn/pages/homepage.dart';
@@ -12,7 +12,7 @@ final Map<String, WidgetBuilder> routes = {
   Instructions.route: (context) => const Instructions(),
   Progress.route: (context) => const Progress(),
   DailyInstructions.route: (context) => DailyInstructions(),
-  Authentication.route: (context) => Consumer<AppState>(
+  Authentication.route: (context) => Consumer<UserRelatedState>(
       builder: (context, authState, _) => authState.loginState !=
               ApplicationLoginState.loggedIn
           ? Authentication(

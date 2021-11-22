@@ -50,9 +50,9 @@ class _DailyInstructionsState extends State<DailyInstructions> {
               ? () => appState.userDayProgress += 1
               : () {};
 
-          final completedAlready = userDayProgress > selectedDay;
+          final dayFinished = userDayProgress > selectedDay;
 
-          return StyledStackContainer(children: [
+          return StyledStackContainer(withGradient: true, children: [
             Column(children: [
               const SleepingGuyUnderTheStars(),
               SizedBox(
@@ -66,7 +66,7 @@ class _DailyInstructionsState extends State<DailyInstructions> {
                             letterSpacing: 2,
                             fontSize: 30)),
                     const SizedBox(width: 10),
-                    completedAlready ? const CompleteText() : const SizedBox(),
+                    dayFinished ? const CompleteText() : const SizedBox(),
                   ],
                 ),
               )),
@@ -81,6 +81,7 @@ class _DailyInstructionsState extends State<DailyInstructions> {
                       const SizedBox(height: 20),
                       const SizedBox(height: 10),
                       InstructionStep(
+                          disabled: dayFinished,
                           content: "Put on your sleep mask",
                           textColor: textColor,
                           checkboxState: checkboxState.firstBoxChecked,
@@ -91,6 +92,7 @@ class _DailyInstructionsState extends State<DailyInstructions> {
                           },
                           step: 1),
                       InstructionStep(
+                          disabled: dayFinished,
                           content:
                               "Perform the breathing exercises: 4-7-8 by emptying your lung, and then inhale for 1- 4 seconds, hold and count to 1-7 and exhale through your mouth for 1-8 seconds. Repeat 4 times. ",
                           textColor: textColor,
@@ -108,8 +110,21 @@ class _DailyInstructionsState extends State<DailyInstructions> {
                       color: const Color(0xff232274),
                       borderRadius: BorderRadius.circular(10.0))),
             ]),
-            CheckButton(
-                enabled: checkboxState.bothChecked(), onPressed: onCheckPressed)
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: CheckButton(
+                  dayFinished: dayFinished,
+                  enabled: checkboxState.bothChecked(),
+                  onPressed: onCheckPressed),
+            ),
+            Positioned(
+                left: 0,
+                bottom: 0,
+                child: IconButton(
+                    onPressed: Navigator.of(context).pop,
+                    color: Colors.white,
+                    icon: const Icon(Icons.arrow_back)))
           ]);
         },
       ),

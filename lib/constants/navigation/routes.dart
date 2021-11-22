@@ -11,7 +11,7 @@ import 'package:yawwn/widgets/authentication/login_state_enum.dart';
 final Map<String, WidgetBuilder> routes = {
   Instructions.route: (context) => const Instructions(),
   Progress.route: (context) => const Progress(),
-  DailyInstructions.route: (context) => DailyInstructions(),
+  DailyInstructions.route: (context) => const DailyInstructions(),
   Authentication.route: (context) => Consumer<UserRelatedState>(
       builder: (context, authState, _) => authState.loginState !=
               ApplicationLoginState.loggedIn

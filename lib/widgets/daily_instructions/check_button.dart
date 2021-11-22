@@ -5,24 +5,30 @@ import 'package:yawwn/widgets/daily_instructions/utils/shwo_alert_dialog.dart';
 class CheckButton extends StatelessWidget {
   final bool enabled;
   final VoidCallback onPressed;
+  final bool dayFinished;
 
-  const CheckButton({required this.onPressed, required this.enabled, Key? key})
+  const CheckButton(
+      {required this.dayFinished,
+      required this.onPressed,
+      required this.enabled,
+      Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      right: 0,
-      child: enabled ? buildEnabledButton(context) : buildDisabledButton(),
-    );
+    if (dayFinished) {
+      return SizedBox(child: buildFinishedButton());
+    }
+
+    return SizedBox(
+        child: enabled ? buildEnabledButton(context) : buildDisabledButton());
   }
 
   Widget buildEnabledButton(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
         backgroundColor: MaterialStateProperty.all<Color>(appColors.accent),
       ),
       onPressed: enabled
@@ -40,11 +46,26 @@ class CheckButton extends StatelessWidget {
       opacity: 0.7,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           side: const BorderSide(width: 1.0, color: Color(0xffffffff)),
         ),
         onPressed: null,
         child: buildButtonContent(const Color(0xffffffff)),
       ),
+    );
+  }
+
+  Widget buildFinishedButton() {
+    return ElevatedButton(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+        backgroundColor:
+            MaterialStateProperty.all<Color>(const Color(0xff261D60)),
+      ),
+      onPressed: null,
+      child: buildButtonContent(const Color(0xff181345)),
     );
   }
 

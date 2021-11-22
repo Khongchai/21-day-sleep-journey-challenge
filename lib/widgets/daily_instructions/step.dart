@@ -5,6 +5,7 @@ class InstructionStep extends StatelessWidget {
   final bool checkboxState;
   final int step;
   final String content;
+  final bool disabled;
   final void Function(bool val) onChanged;
 
   const InstructionStep(
@@ -13,6 +14,7 @@ class InstructionStep extends StatelessWidget {
       required this.textColor,
       required this.step,
       required this.content,
+      required this.disabled,
       Key? key})
       : super(key: key);
 
@@ -27,11 +29,15 @@ class InstructionStep extends StatelessWidget {
           Transform.translate(
             offset: const Offset(0, -10),
             child: Checkbox(
+                activeColor: disabled ? const Color(0xff261D60) : null,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),
                 value: checkboxState,
-                checkColor: Colors.white,
-                onChanged: (val) => onChanged(val ?? false)),
+                checkColor: disabled
+                    ? const Color(0xff181345)
+                    : const Color(0xffffffff),
+                onChanged:
+                    disabled ? (_) {} : (val) => onChanged(val ?? false)),
           ),
           Expanded(child: Text(content, style: TextStyle(color: textColor)))
         ])

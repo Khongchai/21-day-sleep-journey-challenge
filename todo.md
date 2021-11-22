@@ -1,1 +1,2 @@
-Day can now progress. Make the instruction page reflect the finish state by disabling the checkbox and the button.
+Box opacity
+Something different for day 7 and day 21

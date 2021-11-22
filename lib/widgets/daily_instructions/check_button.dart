@@ -14,6 +14,9 @@ class CheckButton extends StatelessWidget {
       Key? key})
       : super(key: key);
 
+  static const buttonPadding =
+      EdgeInsets.symmetric(vertical: 1.5, horizontal: 12);
+
   @override
   Widget build(BuildContext context) {
     if (dayFinished) {
@@ -27,6 +30,7 @@ class CheckButton extends StatelessWidget {
   Widget buildEnabledButton(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsets>(buttonPadding),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
         backgroundColor: MaterialStateProperty.all<Color>(appColors.accent),
@@ -46,6 +50,7 @@ class CheckButton extends StatelessWidget {
       opacity: 0.7,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
+          padding: buttonPadding,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           side: const BorderSide(width: 1.0, color: Color(0xffffffff)),
@@ -59,6 +64,7 @@ class CheckButton extends StatelessWidget {
   Widget buildFinishedButton() {
     return ElevatedButton(
       style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsets>(buttonPadding),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
         backgroundColor:

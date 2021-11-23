@@ -5,6 +5,7 @@ import 'package:yawwn/widgets/background_decorations/sleeping_guy_under_the_star
 import 'package:yawwn/widgets/daily_instructions/check_button.dart';
 import 'package:yawwn/widgets/daily_instructions/complete_text.dart';
 import 'package:yawwn/widgets/daily_instructions/step.dart';
+import 'package:yawwn/widgets/daily_instructions/utils/show_day_21_dialog.dart';
 import 'package:yawwn/widgets/daily_instructions/utils/show_day_7_dialog.dart';
 import 'package:yawwn/widgets/stack_container.dart';
 
@@ -32,10 +33,8 @@ class _DailyInstructionsState extends State<DailyInstructions> {
       CheckboxState(firstBoxChecked: false, secondBoxChecked: false);
   static const textColor = Color(0xffB0ABC7);
 
-  //Special case
-  static const specialPositions = [6, 20];
-
   bool dialogAlreadyShown = false;
+  bool isFirstLoad = true;
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +55,18 @@ class _DailyInstructionsState extends State<DailyInstructions> {
               ? () => appState.userDayProgress += 1
               : () {};
 
-          if (specialPositions.contains(appState.userDayProgress) &&
-              !dialogAlreadyShown) {
+          /*
+            Handle special cases
+           */
+          if (appState.userDayProgress == 6 &&
+              !dialogAlreadyShown &&
+              isFirstLoad) {
             Future.delayed(Duration.zero, () => showDay7Dialog(context));
+            setState(() {
+              dialogAlreadyShown = true;
+            });
+          } else if (appState.userDayProgress == 20 && isFirstLoad) {
+            Future.delayed(Duration.zero, () => showDay21Dialog(context));
             setState(() {
               dialogAlreadyShown = true;
             });

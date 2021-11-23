@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:yawwn/constants/colors.dart';
+import 'package:yawwn/widgets/common/dialog_exit_button.dart';
 import 'package:yawwn/widgets/daily_instructions/utils/dialog_decor.dart';
 
 Future<void> showAlertDialog(
@@ -22,20 +23,7 @@ Future<void> showAlertDialog(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Icon(
-                              Icons.close_outlined,
-                              color: Color(0xffffffff),
-                              size: 20,
-                            )),
-                      ],
-                    ),
+                    const DialogExitButton(),
                     const SizedBox(height: 10),
                     const Text(
                       """Before you sleep, follow the 2nd step previously mentioned. Then, see you tomorrow night !""",

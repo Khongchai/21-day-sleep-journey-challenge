@@ -40,7 +40,7 @@ class UserRelatedState extends ChangeNotifier {
   }
 
   //How far the user is from the last day
-  late final String userId;
+  String userId = "";
   int _userDayProgress = 0;
   int get userDayProgress => _userDayProgress;
   StreamSubscription<DocumentSnapshot>? _userDayProgressSubscription;

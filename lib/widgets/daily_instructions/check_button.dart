@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:yawwn/constants/colors.dart';
-import 'package:yawwn/widgets/daily_instructions/utils/shwo_alert_dialog.dart';
+import 'package:yawwn/widgets/daily_instructions/utils/eod_alert_dialog.dart';
+import 'package:yawwn/widgets/daily_instructions/utils/show_custom_column_dialog.dart';
 
 class CheckButton extends StatelessWidget {
   final bool enabled;
   final VoidCallback onPressed;
   final bool dayFinished;
+  final int curDay;
 
   const CheckButton(
       {required this.dayFinished,
       required this.onPressed,
       required this.enabled,
+      required this.curDay,
       Key? key})
       : super(key: key);
 
@@ -37,7 +41,18 @@ class CheckButton extends StatelessWidget {
       ),
       onPressed: enabled
           ? () {
-              showAlertDialog(context);
+              if (curDay != 20) {
+                showAlertDialog(context);
+              } else {
+                showCustomColumnDialog(context, [
+                  buildBoldText("Just a bit more. Don't forget,"),
+                  buildBoldText("we have a surprise for"),
+                  buildBoldText("you tomorrow! See ya then!"),
+                  const SizedBox(height: 15),
+                  SvgPicture.asset("assets/decor/day-21-decor.svg"),
+                  const SizedBox(height: 15),
+                ]);
+              }
               onPressed();
             }
           : null,
@@ -84,5 +99,9 @@ class CheckButton extends StatelessWidget {
         Icon(Icons.check_outlined, color: color),
       ]),
     );
+  }
+
+  Widget buildBoldText(String text) {
+    return Text(text, style: const TextStyle(fontWeight: FontWeight.bold));
   }
 }

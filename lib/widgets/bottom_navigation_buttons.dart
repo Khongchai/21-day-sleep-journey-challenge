@@ -21,6 +21,9 @@ class BottomNavigationButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final backwardFunctionalityDefined =
         goBackwardText != null && backwardOnPressed != null;
+    final sharedBorderRadius =
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10));
+
     return Positioned(
       bottom: 0,
       left: 0,
@@ -35,8 +38,9 @@ class BottomNavigationButtons extends StatelessWidget {
                 flex: 10,
                 child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 13, horizontal: 10),
+                        shape: sharedBorderRadius,
                         side: const BorderSide(
                             width: 1.0, color: Color(0xaaffffff))),
                     onPressed: backwardOnPressed,
@@ -48,9 +52,11 @@ class BottomNavigationButtons extends StatelessWidget {
               flex: 10,
               child: ElevatedButton(
                   style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                        sharedBorderRadius),
                     backgroundColor:
                         MaterialStateProperty.all<Color>(appColors.primary),
                   ),

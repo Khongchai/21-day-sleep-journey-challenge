@@ -10,24 +10,29 @@ Future<void> showDay21Dialog(BuildContext context) {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Stack(
-              children: [
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const DialogExitButton(),
-                      Image.asset("assets/decor/cheers.png"),
-                      boldText("It's the last day"),
-                      boldText("Awesome!!"),
-                      boldText("Hope you got some great sleep!"),
-                      // SvgPicture.asset("assets/decor/seventh-day-decor.svg"),
-                    ]),
-                Positioned(
-                  child: Image.asset(
-                      "assets/decor/radial-gradient-background.png"),
-                )
-              ],
+            child: Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image:
+                    AssetImage("assets/decor/radial-gradient-background.png"),
+                fit: BoxFit.cover,
+              )),
+              child: Stack(
+                children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const DialogExitButton(),
+                        Image.asset("assets/decor/cheers.png"),
+                        boldText("It's the last day"),
+                        boldText("Awesome!!"),
+                        boldText("Hope you got some great sleep!"),
+                        // SvgPicture.asset("assets/decor/seventh-day-decor.svg"),
+                        const SizedBox(height: 20),
+                      ]),
+                ],
+              ),
             ),
           )));
 }

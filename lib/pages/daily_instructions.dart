@@ -5,8 +5,7 @@ import 'package:yawwn/widgets/background_decorations/sleeping_guy_under_the_star
 import 'package:yawwn/widgets/daily_instructions/check_button.dart';
 import 'package:yawwn/widgets/daily_instructions/complete_text.dart';
 import 'package:yawwn/widgets/daily_instructions/step.dart';
-import 'package:yawwn/widgets/daily_instructions/utils/show_day_21_dialog.dart';
-import 'package:yawwn/widgets/daily_instructions/utils/show_day_7_dialog.dart';
+import 'package:yawwn/widgets/daily_instructions/utils/show_custom_column_dialog.dart';
 import 'package:yawwn/widgets/stack_container.dart';
 
 class CheckboxState {
@@ -61,14 +60,25 @@ class _DailyInstructionsState extends State<DailyInstructions> {
           if (appState.userDayProgress == 6 &&
               !dialogAlreadyShown &&
               isFirstLoad) {
-            Future.delayed(Duration.zero, () => showDay7Dialog(context));
-            setState(() {
-              dialogAlreadyShown = true;
+            Future.delayed(Duration.zero, () {
+              setState(() {
+                dialogAlreadyShown = true;
+              });
+              showCustomColumnDialog(context, [
+                boldText("It's the 7th day!"),
+                boldText("Don't give up yet."),
+                boldText("We have a surprise waiting for you at the end"),
+                Image.asset("assets/decor/day-7-decor.png"),
+              ]);
             });
-          } else if (appState.userDayProgress == 20 && isFirstLoad) {
-            Future.delayed(Duration.zero, () => showDay21Dialog(context));
-            setState(() {
-              dialogAlreadyShown = true;
+          } else if (appState.userDayProgress == 20 &&
+              !dialogAlreadyShown &&
+              isFirstLoad) {
+            Future.delayed(Duration.zero, () {
+              setState(() {
+                dialogAlreadyShown = true;
+              });
+              // showDay21Dialog(context);
             });
           }
 
@@ -136,6 +146,7 @@ class _DailyInstructionsState extends State<DailyInstructions> {
               right: 0,
               bottom: 0,
               child: CheckButton(
+                  curDay: appState.userDayProgress,
                   dayFinished: dayFinished,
                   enabled: checkboxState.bothChecked(),
                   onPressed: onCheckPressed),

@@ -16,6 +16,7 @@ class DottedLinePathPoints extends CustomPainter {
   static final endLine4 = GlobalKey();
   static final endLine5 = GlobalKey();
   static final endLine6 = GlobalKey();
+  static int yScrolledOffset = 0;
   //Get only size of 1 box for reference
   Size? sizeOfBox;
 

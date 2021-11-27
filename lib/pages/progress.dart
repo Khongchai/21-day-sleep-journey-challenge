@@ -32,11 +32,17 @@ class Progress extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           width: 1 / 0,
-          child: Column(children: const [
-            Flexible(flex: 30, child: ProgressHeader()),
-            Flexible(flex: 70, child: ProgressUI())
+          child: Column(children: [
+            const Flexible(flex: 25, child: ProgressHeader()),
+            Flexible(
+                flex: 70,
+                child: Stack(
+                  children: const [
+                    ProgressUI(),
+                  ],
+                ))
           ]),
-        )
+        ),
       ]),
     );
   }

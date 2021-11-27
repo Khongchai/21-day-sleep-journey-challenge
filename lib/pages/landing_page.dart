@@ -4,21 +4,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yawwn/i18n/strings.g.dart';
 import 'package:yawwn/pages/instructions.dart';
 import 'package:yawwn/widgets/background_decorations/moon_and_stars_background.dart';
-import 'package:yawwn/widgets/bottom_navigation_buttons.dart';
+import 'package:yawwn/widgets/common/bottom_navigation_buttons.dart';
+import 'package:yawwn/widgets/common/stack_container.dart';
 import 'package:yawwn/widgets/homepage/welcome_text.dart';
-import 'package:yawwn/widgets/stack_container.dart';
 
-class MyHomePage extends StatefulWidget {
-  static const route = "/";
+class LandingPage extends StatefulWidget {
+  static const screenName = "/";
   final User currentUser;
 
-  const MyHomePage({required this.currentUser, Key? key}) : super(key: key);
+  const LandingPage({required this.currentUser, Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LandingPage> createState() => _LandingPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LandingPageState extends State<LandingPage> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   @override
   Widget build(BuildContext context) {

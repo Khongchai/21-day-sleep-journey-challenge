@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:yawwn/widgets/authentication/login_form.dart';
 import 'package:yawwn/widgets/authentication/register_form.dart';
-import 'package:yawwn/widgets/stack_container.dart';
+import 'package:yawwn/widgets/common/stack_container.dart';
 
 import '../../widgets/authentication/login_state_enum.dart';
 

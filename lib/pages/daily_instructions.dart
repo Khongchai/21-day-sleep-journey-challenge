@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 import 'package:yawwn/global_state/user_related_state.dart';
 import 'package:yawwn/widgets/background_decorations/sleeping_guy_under_the_stars.dart';
+import 'package:yawwn/widgets/common/stack_container.dart';
 import 'package:yawwn/widgets/daily_instructions/check_button.dart';
 import 'package:yawwn/widgets/daily_instructions/complete_text.dart';
 import 'package:yawwn/widgets/daily_instructions/step.dart';
 import 'package:yawwn/widgets/daily_instructions/utils/show_custom_column_dialog.dart';
-import 'package:yawwn/widgets/stack_container.dart';
 
 class CheckboxState {
   bool firstBoxChecked;

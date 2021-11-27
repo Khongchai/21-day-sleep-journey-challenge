@@ -3,21 +3,25 @@ import 'package:provider/provider.dart';
 import 'package:yawwn/global_state/user_related_state.dart';
 import 'package:yawwn/pages/authentication/authentication.dart';
 import 'package:yawwn/pages/daily_instructions.dart';
+import 'package:yawwn/pages/ending_pages/loading_page.dart';
 import 'package:yawwn/pages/ending_pages/sleep_mask_delivery.dart';
 import 'package:yawwn/pages/ending_pages/surprise.dart';
-import 'package:yawwn/pages/homepage.dart';
 import 'package:yawwn/pages/instructions.dart';
+import 'package:yawwn/pages/landing_page.dart';
+import 'package:yawwn/pages/last_page.dart';
 import 'package:yawwn/pages/progress.dart';
 import 'package:yawwn/widgets/authentication/login_state_enum.dart';
 
 final Map<String, WidgetBuilder> routes = {
-  Instructions.screenName: (context) => const Instructions(),
-  Progress.screenName: (context) => const Progress(),
-  DailyInstructions.screenName: (context) => const DailyInstructions(),
-  Surprise.screenName: (context) => const Surprise(),
-  SleepMaskDeliveryPage.screenName: (context) => const SleepMaskDeliveryPage(),
-  Authentication.screenName: (context) => Consumer<UserRelatedState>(
-      builder: (context, authState, _) => authState.loginState !=
+  Instructions.screenName: (_) => const Instructions(),
+  Progress.screenName: (_) => const Progress(),
+  DailyInstructions.screenName: (_) => const DailyInstructions(),
+  LastPage.screenName: (_) => const LastPage(),
+  Surprise.screenName: (_) => const Surprise(),
+  SleepMaskDeliveryPage.screenName: (_) => const SleepMaskDeliveryPage(),
+  LoadingPageOverlay.screenName: (_) => const LoadingPageOverlay(),
+  Authentication.screenName: (_) => Consumer<UserRelatedState>(
+      builder: (_, authState, __) => authState.loginState !=
               ApplicationLoginState.loggedIn
           ? Authentication(
               loginState: authState.loginState,
@@ -26,7 +30,7 @@ final Map<String, WidgetBuilder> routes = {
               registerAccount: authState.registerAccount,
               signInWithEmailAndPassword: authState.signInWithEmailAndPassword,
             )
-          : MyHomePage(
+          : LandingPage(
               currentUser: authState.currentUser!,
             ))
 };

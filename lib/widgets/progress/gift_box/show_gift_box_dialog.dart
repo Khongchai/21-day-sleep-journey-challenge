@@ -12,7 +12,7 @@ Future showGiftBoxDialog(BuildContext context) {
       [
         Align(alignment: Alignment.center, child: _buildTopDialogSection()),
         const SizedBox(height: 10),
-        const Text("YOU JUST A COMPLETED 21-DAY SLEEP JOURNEY CHALLENGE",
+        const Text("YOU JUST COMPLETED A 21-DAY SLEEP JOURNEY CHALLENGE",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 20),

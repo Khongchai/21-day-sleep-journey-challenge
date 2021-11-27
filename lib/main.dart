@@ -23,32 +23,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Yawwn",
-        locale: TranslationProvider.of(context).flutterLocale,
-        supportedLocales: LocaleSettings.supportedLocales,
-        localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        theme: ThemeData(
-            unselectedWidgetColor: Colors.white,
-            textTheme: const TextTheme(
-              headline1: TextStyle(
-                  color: Colors.white,
-                  fontSize: 23,
-                  fontWeight: FontWeight.w600),
-              button: TextStyle(color: Colors.white),
-              bodyText1: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20),
-              bodyText2: TextStyle(
-                  color: Colors.white,
-                  height: 1.4,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16),
-              caption: TextStyle(color: Color(0xffB0ABC7)),
-            ),
-            primaryColor: const Color(0xFF084FFF),
-            backgroundColor: const Color(0xFF291467)),
-        initialRoute: Authentication.screenName,
-        routes: routes);
+      title: "Yawwn",
+      locale: TranslationProvider.of(context).flutterLocale,
+      supportedLocales: LocaleSettings.supportedLocales,
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      theme: ThemeData(
+          unselectedWidgetColor: Colors.white,
+          textTheme: const TextTheme(
+            headline1: TextStyle(
+                color: Colors.white, fontSize: 23, fontWeight: FontWeight.w600),
+            button: TextStyle(color: Colors.white),
+            bodyText1: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w600, fontSize: 20),
+            bodyText2: TextStyle(
+                color: Colors.white,
+                height: 1.4,
+                fontWeight: FontWeight.w600,
+                fontSize: 16),
+            caption: TextStyle(color: Color(0xffB0ABC7)),
+          ),
+          primaryColor: const Color(0xFF084FFF),
+          backgroundColor: const Color(0xFF291467)),
+      initialRoute: Authentication.screenName,
+      routes: routes,
+    );
   }
 }

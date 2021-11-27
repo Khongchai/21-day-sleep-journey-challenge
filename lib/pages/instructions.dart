@@ -4,9 +4,9 @@ import 'package:yawwn/global_state/user_related_state.dart';
 import 'package:yawwn/pages/progress.dart';
 import 'package:yawwn/utils/show_two_buttons_dialog.dart';
 import 'package:yawwn/widgets/background_decorations/mask_and_clouds.dart';
-import 'package:yawwn/widgets/bottom_navigation_buttons.dart';
+import 'package:yawwn/widgets/common/bottom_navigation_buttons.dart';
+import 'package:yawwn/widgets/common/stack_container.dart';
 import 'package:yawwn/widgets/instructions/instruction_text.dart';
-import 'package:yawwn/widgets/stack_container.dart';
 
 class Instructions extends StatelessWidget {
   static const screenName = "instruction";

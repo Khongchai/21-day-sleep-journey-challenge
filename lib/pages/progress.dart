@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import 'package:yawwn/widgets/background_decorations/moon_and_stars_background.dart';
+import 'package:yawwn/widgets/common/stack_container.dart';
 import 'package:yawwn/widgets/progress/dotted_line_path_points.dart';
 import 'package:yawwn/widgets/progress/progress.dart';
 import 'package:yawwn/widgets/progress/progress_header.dart';
-import 'package:yawwn/widgets/stack_container.dart';
 
 class Progress extends StatelessWidget {
   static const screenName = "progress";

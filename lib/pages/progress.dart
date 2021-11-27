@@ -7,7 +7,7 @@ import 'package:yawwn/widgets/progress/progress_header.dart';
 import 'package:yawwn/widgets/stack_container.dart';
 
 class Progress extends StatelessWidget {
-  static const route = "progress";
+  static const screenName = "progress";
 
   const Progress({Key? key}) : super(key: key);
 

@@ -6,7 +6,7 @@ import 'package:yawwn/widgets/stack_container.dart';
 import '../../widgets/authentication/login_state_enum.dart';
 
 class Authentication extends StatelessWidget {
-  static const route = "/";
+  static const screenName = "/";
 
   final ApplicationLoginState loginState;
   final VoidCallback startRegister;
@@ -23,7 +23,7 @@ class Authentication extends StatelessWidget {
     void Function(Exception e) error,
   ) registerAccount;
 
-  Authentication({
+  const Authentication({
     required this.loginState,
     required this.startRegister,
     required this.startLogin,

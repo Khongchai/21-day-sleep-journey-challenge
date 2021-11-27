@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             ),
             primaryColor: const Color(0xFF084FFF),
             backgroundColor: const Color(0xFF291467)),
-        initialRoute: Authentication.route,
+        initialRoute: Authentication.screenName,
         routes: routes);
   }
 }

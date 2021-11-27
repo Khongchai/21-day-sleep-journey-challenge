@@ -27,7 +27,7 @@ class GridItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: isCurrent
-          ? () => Navigator.pushNamed(context, DailyInstructions.route,
+          ? () => Navigator.pushNamed(context, DailyInstructions.screenName,
               arguments: {"selectedDay": itemPosition})
           : null,
       child: Card(

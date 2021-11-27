@@ -19,10 +19,11 @@ class CustomElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(text),
         style: ButtonStyle(
-            elevation: MaterialStateProperty.all<double>(20),
+            padding: MaterialStateProperty.all<EdgeInsets>(
+                const EdgeInsets.symmetric(vertical: 12, horizontal: 15)),
+            elevation: MaterialStateProperty.all<double>(5),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10))),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
             backgroundColor: MaterialStateProperty.all<Color>(color)));
   }
 }

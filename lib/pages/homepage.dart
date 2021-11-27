@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationButtons(
             goForwardText: t.begin_button,
             forwardOnPressed: () =>
-                Navigator.pushNamed(context, Instructions.route),
+                Navigator.pushNamed(context, Instructions.screenName),
           ),
         ]),
       ]),

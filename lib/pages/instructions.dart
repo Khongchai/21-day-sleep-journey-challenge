@@ -9,7 +9,7 @@ import 'package:yawwn/widgets/instructions/instruction_text.dart';
 import 'package:yawwn/widgets/stack_container.dart';
 
 class Instructions extends StatelessWidget {
-  static const route = "instruction";
+  static const screenName = "instruction";
 
   const Instructions({Key? key}) : super(key: key);
 

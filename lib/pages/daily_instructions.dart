@@ -19,7 +19,7 @@ class CheckboxState {
 }
 
 class DailyInstructions extends StatefulWidget {
-  static const route = "daily_instructions";
+  static const screenName = "daily_instructions";
 
   const DailyInstructions({Key? key}) : super(key: key);
 

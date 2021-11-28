@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:yawwn/global_state/user_related_state.dart';
 import 'package:yawwn/widgets/background_decorations/moon_and_stars_background.dart';
 import 'package:yawwn/widgets/common/bottom_navigation_buttons.dart';
 import 'package:yawwn/widgets/common/stack_container.dart';
@@ -16,9 +18,15 @@ class LastPage extends StatelessWidget {
         const MoonAndStarsBackground(),
         Stack(children: [
           const GoodbyeText(),
-          BottomNavigationButtons(
-              goForwardText: "Leave the challenge",
-              forwardOnPressed: () => SystemNavigator.pop()),
+          Consumer<UserRelatedState>(builder: (context, appState, child) {
+            return BottomNavigationButtons(
+                goForwardText: "Leave the challenge",
+                forwardOnPressed: () {
+                  appState
+                      .resetUserProgress()
+                      .then((_) => SystemNavigator.pop());
+                });
+          })
         ]),
       ]),
     );

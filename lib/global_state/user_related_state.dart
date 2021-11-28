@@ -58,6 +58,13 @@ class UserRelatedState extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> resetUserProgress() async {
+    return FirebaseFirestore.instance
+        .collection("userData")
+        .doc(userId)
+        .set({"day": 0});
+  }
+
   //Auth stuff
 
   User? _currentUser;

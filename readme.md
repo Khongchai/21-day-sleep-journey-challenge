@@ -1,4 +1,4 @@
-# POC for the sleep helper app "21 Days Sleep Journey Challenge"
+# POC for the sleep helper app "21-Day Sleep Journey Challenge"
 
 Currently, the app's responsiveness has been tested on only two devices: Pixel 5 & Nokia 9.
 
